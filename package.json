@@ -23,7 +23,7 @@
       }
     },
     "start": {
-      "command": "node index.js",
+      "command": "babel-node index.js",
       "env": {
         "NODE_ENV": "production"
       }
