@@ -1,11 +1,14 @@
 import * as dao from '../dao'
+import * as Log from '../utils/logger'
 
 export function getDocList(ctx, next) {
+  Log.logVisit(ctx, 'getDocList')
   ctx.body = dao.getDocList()
   return next()
 }
 
 export function addDoc(ctx, next) {
+  Log.logVisit(ctx, 'addDoc')
   const {name, description} = ctx.request.body
   if (name === undefined) {
     ctx.throw(400, 'name不能为空')
@@ -26,6 +29,7 @@ export function addDoc(ctx, next) {
 }
 
 export function getDoc(ctx, next) {
+  Log.logVisit(ctx, 'getDoc')
   let data = dao.getDocData(ctx.params.docId)
   if (!data) {
     ctx.throw(404, `id: ${ctx.params.docId} not found`)
@@ -48,6 +52,7 @@ function validate(data, key, value) {
 }
 
 export function addColorItem(ctx, next) {
+  Log.logVisit(ctx, 'addColorItem')
   let docId = ctx.params.docId
   let data = dao.getDocData(docId)
   if (!data) {
@@ -79,6 +84,7 @@ export function addColorItem(ctx, next) {
 }
 
 export function deleteColorItem(ctx, next) {
+  Log.logVisit(ctx, 'deleteColorItem')
   const {docId, colorId} = ctx.params
   let data = dao.getDocData(docId)
   if (!data) {
@@ -105,6 +111,7 @@ export function deleteColorItem(ctx, next) {
 }
 
 export function editColorItem(ctx, next) {
+  Log.logVisit(ctx, 'editColorItem')
   const {docId, colorId} = ctx.params
   let data = dao.getDocData(docId)
   if (!data) {
@@ -138,6 +145,7 @@ export function editColorItem(ctx, next) {
 }
 
 export function addFontItem(ctx, next) {
+  Log.logVisit(ctx, 'addFontItem')
   let docId = ctx.params.docId
   let data = dao.getDocData(docId)
   if (!data) {
@@ -173,6 +181,7 @@ export function addFontItem(ctx, next) {
 }
 
 export function deleteFontItem(ctx, next) {
+  Log.logVisit(ctx, 'deleteFontItem')
   const {docId, fontId} = ctx.params
   let data = dao.getDocData(docId)
   if (!data) {
@@ -199,6 +208,7 @@ export function deleteFontItem(ctx, next) {
 }
 
 export function editFontItem(ctx, next) {
+  Log.logVisit(ctx, 'editFontItem')
   const {docId, fontId} = ctx.params
   let data = dao.getDocData(docId)
   if (!data) {
